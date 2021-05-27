@@ -1,6 +1,8 @@
 package jp.ac.titech.itpro.sdl.startservice;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate in " + Thread.currentThread());
         setContentView(R.layout.activity_main);
+
+        MyBroadcastReceiver receiver = new MyBroadcastReceiver();
+        IntentFilter intentfilter = new IntentFilter();
+        intentfilter.addAction("SERVICE3_ANSWER");
+        registerReceiver(receiver, intentfilter);
     }
 
     public void onClickTest1(View v) {
@@ -30,4 +37,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Service2.EXTRA_MYARG, "Hello, Service2");
         startService(intent);
     }
+
+    public void onClickTest3(View v) {
+        Log.d(TAG, "onClickTest3 in " + Thread.currentThread());
+        Intent intent = new Intent(this, Service3.class);
+        intent.putExtra(Service3.EXTRA_MYARG, "Hello, Service3");
+        startService(intent);
+    }
 }
+

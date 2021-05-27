@@ -16,8 +16,15 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="SERVICE3_ANSWER"></action>
+            </intent-filter>
+        </receiver>
+
         <service android:name=".Service1" />
         <service android:name=".Service2" android:exported="false" />
+        <service android:name=".Service3" android:exported="false" />
     </application>
 
 </manifest>
